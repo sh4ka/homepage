@@ -5,18 +5,19 @@ let rssContainer = null;
 export async function renderRSS(container) {
   rssContainer = container;
 
+  const feeds = await Storage.get('feeds', []);
+  const activeFeedUrls = feeds.map(f => f.url);
   const feedCache = await Storage.get('feedCache', {});
   const refreshMinutes = await Storage.get('feedRefreshMinutes', 30);
-  const urls = Object.keys(feedCache);
 
-  if (urls.length > 0) {
-    const oldestFetch = Math.min(...urls.map(url => feedCache[url].lastFetched || 0));
+  if (activeFeedUrls.length > 0) {
+    const oldestFetch = Math.min(...activeFeedUrls.map(url => feedCache[url]?.lastFetched || 0));
     const ageMs = Date.now() - oldestFetch;
     if (ageMs > refreshMinutes * 60 * 1000) {
       try {
         const response = await browser.runtime.sendMessage({ action: 'refreshFeeds' });
         if (response?.cache) {
-          renderFeedDOM(container, response.cache);
+          renderFeedDOM(container, response.cache, activeFeedUrls);
           return;
         }
       } catch (err) {
@@ -25,23 +26,28 @@ export async function renderRSS(container) {
     }
   }
 
-  renderFeedDOM(container, feedCache);
+  renderFeedDOM(container, feedCache, activeFeedUrls);
 }
 
 export async function refreshRSS() {
   if (!rssContainer) return;
   try {
+    const feeds = await Storage.get('feeds', []);
+    const activeFeedUrls = feeds.map(f => f.url);
     const response = await browser.runtime.sendMessage({ action: 'refreshFeeds' });
     rssContainer.innerHTML = '';
-    renderFeedDOM(rssContainer, response?.cache || await Storage.get('feedCache', {}));
+    const cache = response?.cache || await Storage.get('feedCache', {});
+    renderFeedDOM(rssContainer, cache, activeFeedUrls);
   } catch (err) {
     console.error('[~/page RSS]', err);
   }
 }
 
-function renderFeedDOM(container, feedCache) {
+function renderFeedDOM(container, feedCache, activeFeedUrls) {
   container.innerHTML = '';
-  const urls = Object.keys(feedCache || {});
+  const urls = activeFeedUrls
+    ? activeFeedUrls.filter(url => feedCache[url])
+    : Object.keys(feedCache || {});
 
   const topSep = document.createElement('div');
   topSep.className = 'rss-separator text-dim';

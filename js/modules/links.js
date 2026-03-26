@@ -66,7 +66,7 @@ function renderLinksDOM(container, links, linksGrid) {
   container.appendChild(grid);
 
   // ShortcutManager dispatches hackpage:open-link with { detail: { index: N } } for number key shortcuts
-  document.addEventListener('hackpage:open-link', (e) => {
+  document.addEventListener('tildepage:open-link', (e) => {
     const idx = e.detail.index;
     if (idx >= 0 && idx < links.length) {
       window.location.href = links[idx].url;

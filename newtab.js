@@ -2,10 +2,10 @@ import { Storage } from './js/storage.js';
 import { ShortcutManager } from './js/shortcuts.js';
 import { renderAsciiHeader } from './js/modules/ascii.js';
 import { renderClock } from './js/modules/clock.js';
-import { renderLinks } from './js/modules/links.js';
+import { renderLinks, refreshLinks } from './js/modules/links.js';
 import { renderSearch } from './js/modules/search.js';
 import { renderStats } from './js/modules/stats.js';
-import { renderRSS } from './js/modules/rss.js';
+import { renderRSS, refreshRSS } from './js/modules/rss.js';
 import { initExportShortcut } from './js/export.js';
 
 const HACKER_QUOTES = [
@@ -109,3 +109,10 @@ async function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) {
+    refreshLinks();
+    refreshRSS();
+  }
+});

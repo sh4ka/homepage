@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "web-ext run --firefox=/Applications/Firefox.app/Contents/MacOS/firefox --firefox-profile=hackpage-dev --profile-create-if-missing --keep-profile-changes",
-    "build": "web-ext build",
+    "build": "web-ext build --filename homepage-{version}.zip",
     "lint": "web-ext lint"
   },
   "devDependencies": {

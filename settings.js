@@ -438,7 +438,49 @@ async function renderLinkGridSection(container) {
 
 async function renderRSSFeedsSection(container) {
   const section = createSection('RSS FEEDS', 'Manage news feeds (max 10)');
-  
+
+  const refreshMinutes = await Storage.get('feedRefreshMinutes', 30);
+
+  const intervalRow = document.createElement('div');
+  intervalRow.className = 'settings-field-row';
+  intervalRow.style.marginBottom = '1.5rem';
+
+  const intervalLabel = document.createElement('label');
+  intervalLabel.className = 'settings-label text-dim';
+  intervalLabel.textContent = 'Refresh every';
+
+  const intervalSelect = document.createElement('select');
+  intervalSelect.className = 'settings-select';
+
+  const options = [
+    { value: 15,   label: '15 minutes' },
+    { value: 30,   label: '30 minutes' },
+    { value: 60,   label: '1 hour' },
+    { value: 120,  label: '2 hours' },
+    { value: 360,  label: '6 hours' },
+    { value: 720,  label: '12 hours' },
+    { value: 1440, label: '24 hours' },
+  ];
+
+  options.forEach(({ value, label }) => {
+    const opt = document.createElement('option');
+    opt.value = value;
+    opt.textContent = label;
+    if (value === refreshMinutes) opt.selected = true;
+    intervalSelect.appendChild(opt);
+  });
+
+  intervalSelect.addEventListener('change', async () => {
+    const minutes = parseInt(intervalSelect.value, 10);
+    await Storage.set('feedRefreshMinutes', minutes);
+    await browser.alarms.create('rss-refresh', { periodInMinutes: minutes, delayInMinutes: minutes });
+    showSaveFlash(intervalRow);
+  });
+
+  intervalRow.appendChild(intervalLabel);
+  intervalRow.appendChild(intervalSelect);
+  section.appendChild(intervalRow);
+
   const feeds = await Storage.get('feeds', []);
   
   const listContainer = document.createElement('div');
@@ -480,8 +522,12 @@ async function renderRSSFeedsSection(container) {
         removeBtn.className = 'settings-btn settings-btn-small settings-btn-danger';
         removeBtn.textContent = 'REMOVE';
         removeBtn.addEventListener('click', async () => {
+          const removedUrl = feeds[index].url;
           feeds.splice(index, 1);
           await Storage.set('feeds', feeds);
+          const cache = await Storage.get('feedCache', {});
+          delete cache[removedUrl];
+          await Storage.set('feedCache', cache);
           renderFeedsList();
           showSaveFlash(listContainer);
         });
@@ -546,19 +592,17 @@ async function renderRSSFeedsSection(container) {
       }
       
       try {
-        const response = await browser.runtime.sendMessage({
-          action: 'requestFeedPermission',
-          url: url
-        });
-        
-        if (response && response.granted) {
+        const origin = new URL(url).origin;
+        const granted = await browser.permissions.request({ origins: [`${origin}/*`] });
+
+        if (granted) {
           feeds.push({ title, url });
           await Storage.set('feeds', feeds);
           titleInput.value = '';
           urlInput.value = '';
           renderFeedsList();
           showSaveFlash(addForm);
-          
+
           if (feeds.length >= 10) {
             addForm.remove();
           }
