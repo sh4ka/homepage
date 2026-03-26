@@ -8,6 +8,15 @@ import { renderStats } from './js/modules/stats.js';
 import { renderRSS, refreshRSS } from './js/modules/rss.js';
 import { initExportShortcut } from './js/export.js';
 
+// Firefox does not give page focus to newtab override pages (Bug 1415860).
+// Workaround: re-open as a programmatic tab (which does get focus) then close original.
+if (!location.search.includes('focused')) {
+  browser.tabs.getCurrent().then(tab => {
+    browser.tabs.create({ url: browser.runtime.getURL('newtab.html') + '?focused=1' })
+      .then(() => browser.tabs.remove(tab.id));
+  });
+}
+
 const HACKER_QUOTES = [
   '"The only secure computer is one that\'s unplugged." — Wozniak',
   '"Information wants to be free." — Stewart Brand',
@@ -108,10 +117,6 @@ async function init() {
   }
 
   document.getElementById('main').focus();
-  setTimeout(() => {
-    const searchInput = document.querySelector('.search-input');
-    if (searchInput) searchInput.focus();
-  }, 100);
 }
 
 document.addEventListener('DOMContentLoaded', init);
