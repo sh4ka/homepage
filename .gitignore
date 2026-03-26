@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Build output
+web-ext-artifacts/
+
+# Firefox profile used for development
+hackpage-dev/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Sisyphus / AI orchestration (not part of the extension)
+.sisyphus/

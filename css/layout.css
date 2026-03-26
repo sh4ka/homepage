@@ -1,0 +1,67 @@
+/* Main hackpage layout */
+.hackpage {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Each module section */
+.module {
+  position: relative;
+}
+
+/* Side-by-side grid for links + stats */
+.module-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* Greeting styles */
+.greeting-prompt {
+  font-family: var(--font-body);
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.greeting-message {
+  font-family: var(--font-body);
+  font-size: 0.9em;
+  margin-bottom: 0.25rem;
+}
+
+.greeting-quote {
+  font-family: var(--font-body);
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+/* Footer */
+.hackpage-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0.5rem;
+  background: var(--color-void);
+  border-top: 1px solid var(--color-border);
+  z-index: 100;
+}
+
+.footer-hint {
+  font-size: 0.75em;
+  font-family: var(--font-body);
+}
+
+@media (max-width: 600px) {
+  .module-grid {
+    grid-template-columns: 1fr;
+  }
+}

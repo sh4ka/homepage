@@ -1,0 +1,20 @@
+.clock-module {
+  font-family: var(--font-body, monospace);
+  line-height: 2;
+}
+
+.clock-line {
+  display: flex;
+  align-items: baseline;
+}
+
+.clock-label {
+  color: var(--color-text-dim, #6a6a7a);
+  min-width: 8ch;
+  flex-shrink: 0;
+}
+
+.clock-value {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}

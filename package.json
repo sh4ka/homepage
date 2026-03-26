@@ -1,0 +1,14 @@
+{
+  "name": "hackpage",
+  "version": "1.0.0",
+  "description": "Cyberpunk neon hacker command center for your new tab",
+  "type": "module",
+  "scripts": {
+    "start": "web-ext run --firefox=/Applications/Firefox.app/Contents/MacOS/firefox --firefox-profile=hackpage-dev --profile-create-if-missing --keep-profile-changes",
+    "build": "web-ext build",
+    "lint": "web-ext lint"
+  },
+  "devDependencies": {
+    "web-ext": "^7.10.0"
+  }
+}

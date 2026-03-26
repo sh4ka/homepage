@@ -1,0 +1,407 @@
+/* =============================================================================
+   HACKPAGE SETTINGS PAGE STYLES
+   Full configuration UI with cyberpunk aesthetics
+   ============================================================================= */
+
+/* Main Page Container */
+.settings-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Top bar: back link + title */
+.settings-topbar {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-cyan);
+}
+
+.settings-back {
+  font-size: 0.9em;
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.settings-back:hover {
+  opacity: 1;
+  color: var(--color-cyan);
+}
+
+/* Page Title */
+.settings-title {
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* Section Container */
+.settings-section {
+  margin-bottom: 3rem;
+}
+
+/* Section Title */
+.settings-section-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--color-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Section Description */
+.settings-section-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-dim);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* Form Elements */
+.settings-input,
+.settings-select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--color-cyan);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.5rem 0.25rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.settings-input:focus,
+.settings-select:focus {
+  outline: none;
+  border-bottom-color: var(--color-green);
+}
+
+.settings-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2300f0ff' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 2rem;
+}
+
+.settings-select option {
+  background: var(--color-void);
+  color: var(--color-text);
+}
+
+.settings-field-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.settings-field-row .settings-label {
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.settings-field-row .settings-select {
+  flex: 1;
+  max-width: 220px;
+  margin-bottom: 0;
+}
+
+.settings-input::placeholder {
+  color: var(--color-text-dim);
+}
+
+.settings-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300f0ff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 2rem;
+}
+
+/* Button Styles */
+.settings-btn {
+  background: transparent;
+  border: 2px solid var(--color-cyan);
+  color: var(--color-cyan);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.settings-btn:hover {
+  background: rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+.settings-btn:active {
+  transform: scale(0.98);
+}
+
+.settings-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.settings-btn-small {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-width: 1px;
+}
+
+.settings-btn-danger {
+  border-color: var(--color-magenta);
+  color: var(--color-magenta);
+}
+
+.settings-btn-danger:hover {
+  background: rgba(255, 42, 109, 0.1);
+  box-shadow: 0 0 10px rgba(255, 42, 109, 0.5);
+}
+
+.settings-btn-success {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
+.settings-btn-success:hover {
+  background: rgba(5, 255, 161, 0.1);
+  box-shadow: 0 0 10px rgba(5, 255, 161, 0.5);
+}
+
+/* List Items */
+.settings-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.settings-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.settings-list-item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.settings-list-item-label {
+  font-weight: 700;
+  color: var(--color-cyan);
+}
+
+.settings-list-item-url {
+  font-size: 0.875rem;
+  color: var(--color-text-dim);
+  word-break: break-all;
+}
+
+.settings-list-item-actions {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* Form Row */
+.settings-form-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.settings-form-row .settings-input {
+  margin-bottom: 0;
+}
+
+/* Grid Layout for Selectors */
+.settings-grid-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.settings-grid-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.settings-grid-option label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Status Messages */
+.settings-save-flash {
+  display: inline-block;
+  color: var(--color-green);
+  font-weight: 700;
+  font-size: 0.875rem;
+  margin-left: 0.5rem;
+  opacity: 0;
+  animation: fadeInOut 1.5s ease;
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+  }
+  20%, 80% {
+    opacity: 1;
+  }
+}
+
+.settings-error {
+  color: var(--color-magenta);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.settings-note {
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+/* Data Management Section */
+.settings-data-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Clear Confirmation Inline */
+.settings-clear-confirm {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 42, 109, 0.1);
+  border: 2px solid var(--color-magenta);
+  border-radius: 4px;
+}
+
+.settings-clear-confirm .settings-input {
+  flex: 1;
+  margin-bottom: 0;
+  border-bottom-color: var(--color-magenta);
+}
+
+/* Keyboard Shortcuts Table */
+.settings-shortcuts-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.settings-shortcuts-table th,
+.settings-shortcuts-table td {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.settings-shortcuts-table th {
+  font-weight: 700;
+  color: var(--color-yellow);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.settings-shortcuts-table td {
+  font-size: 0.875rem;
+}
+
+.settings-shortcuts-table .key-cell {
+  font-family: var(--font-display);
+  color: var(--color-cyan);
+  font-size: 1.2rem;
+}
+
+/* Hidden File Input for Import */
+.settings-file-input {
+  display: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .settings-page {
+    padding: 1rem;
+  }
+
+  .settings-title {
+    font-size: 2rem;
+  }
+
+  .settings-section-title {
+    font-size: 1.5rem;
+  }
+
+  .settings-form-row {
+    flex-direction: column;
+  }
+
+  .settings-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .settings-list-item-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .settings-save-flash {
+    animation: none;
+    opacity: 1;
+  }
+
+  .settings-btn {
+    transition: none;
+  }
+
+  .settings-input,
+  .settings-select {
+    transition: none;
+  }
+}

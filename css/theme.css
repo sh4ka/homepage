@@ -1,0 +1,192 @@
+/* =============================================================================
+   HACKPAGE CYBERPUNK THEME
+   A neon-soaked, CRT-glitch aesthetic for Firefox new tab
+   ============================================================================= */
+
+/* Font Loading - Bundled WOFF2 (No CDN) */
+@font-face {
+  font-family: 'VT323';
+  src: url('../fonts/vt323-regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/jetbrains-mono-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/jetbrains-mono-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* CSS Custom Properties - Cyberpunk Palette */
+:root {
+  /* Background layers */
+  --color-void: #0d0e14;
+  --color-bg-surface: #13141a;
+  
+  /* Neon accent colors */
+  --color-cyan: #00f0ff;
+  --color-magenta: #ff2a6d;
+  --color-yellow: #fcee0a;
+  --color-green: #05ffa1;
+  
+  /* Text hierarchy */
+  --color-text: #e0e0e0;
+  --color-text-dim: #6a6a7a;
+  
+  /* UI elements */
+  --color-border: #2a2b3a;
+  
+  /* Typography scale */
+  --font-display: 'VT323', monospace;
+  --font-body: 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
+  
+  /* Glow effects (neon text-shadow) */
+  --glow-cyan: 0 0 6px rgba(0, 240, 255, 0.5);
+  --glow-magenta: 0 0 6px rgba(255, 42, 109, 0.5);
+  --glow-green: 0 0 6px rgba(5, 255, 161, 0.5);
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body - Base Canvas */
+body {
+  background-color: var(--color-void);
+  font-family: var(--font-body);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* CRT Scanline Overlay - Old Monitor Effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Glow Utility Classes - Neon Text Effects */
+.glow-cyan {
+  text-shadow: var(--glow-cyan);
+}
+
+.glow-magenta {
+  text-shadow: var(--glow-magenta);
+}
+
+.glow-green {
+  text-shadow: var(--glow-green);
+}
+
+/* Color Utility Classes */
+.text-cyan {
+  color: var(--color-cyan);
+}
+
+.text-magenta {
+  color: var(--color-magenta);
+}
+
+.text-yellow {
+  color: var(--color-yellow);
+}
+
+.text-green {
+  color: var(--color-green);
+}
+
+.text-dim {
+  color: var(--color-text-dim);
+}
+
+/* Typography Utility Classes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Cursor Blink Animation - Terminal Style */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Scrollbar Styling - Cyberpunk Thin Bars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-cyan);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-magenta);
+}
+
+/* Firefox scrollbar support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-cyan) var(--color-void);
+}
+
+/* Focus Indicator - Accessibility First */
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+/* Accessibility - Respect Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Disable CRT scanlines for motion sensitivity */
+  body::before {
+    display: none;
+  }
+}

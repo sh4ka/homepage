@@ -1,0 +1,170 @@
+/* =============================================================================
+   HACKPAGE ONBOARDING OVERLAY
+   First-run full-screen initialization interface
+   ============================================================================= */
+
+.onboarding-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 14, 20, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(2px);
+  opacity: 1;
+}
+
+.onboarding-box {
+  border: 1px solid var(--color-cyan);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  padding: 2rem 2.5rem;
+  max-width: 600px;
+  width: 90%;
+  background: var(--color-void);
+}
+
+.onboarding-header {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.onboarding-divider {
+  margin-bottom: 1.5rem;
+  font-size: 0.85em;
+}
+
+.onboarding-typewriter {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.9em;
+  animation: typewriter-reveal 0.6s steps(30) forwards;
+  opacity: 0;
+}
+
+.onboarding-typewriter:nth-of-type(1) {
+  animation-delay: 0.2s;
+}
+
+.onboarding-typewriter:nth-of-type(2) {
+  animation-delay: 0.8s;
+}
+
+.onboarding-typewriter:nth-of-type(3) {
+  animation-delay: 1.4s;
+}
+
+@keyframes typewriter-reveal {
+  from {
+    opacity: 0;
+    max-width: 0;
+  }
+  to {
+    opacity: 1;
+    max-width: 100%;
+  }
+}
+
+.onboarding-hint {
+  margin-bottom: 0.5rem;
+  font-size: 0.8em;
+}
+
+.onboarding-field-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.onboarding-label {
+  white-space: nowrap;
+  font-size: 0.85em;
+  flex-shrink: 0;
+}
+
+.onboarding-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-cyan);
+  font-family: var(--font-body);
+  font-size: 0.9em;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  flex: 1;
+  caret-color: var(--color-cyan);
+  transition: border-bottom-color 0.2s ease;
+}
+
+.onboarding-input:focus {
+  border-bottom-color: var(--color-cyan);
+}
+
+.onboarding-input::placeholder {
+  color: var(--color-text-dim);
+}
+
+.onboarding-links-group {
+  margin-bottom: 0.5rem;
+}
+
+.onboarding-link-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.onboarding-link-label {
+  max-width: 120px;
+  min-width: 80px;
+}
+
+.onboarding-link-url {
+  flex: 1;
+}
+
+.onboarding-spacer {
+  height: 1.5rem;
+}
+
+.onboarding-btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  border: 1px solid var(--color-green);
+  color: var(--color-green);
+  font-family: var(--font-body);
+  font-size: 1em;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  letter-spacing: 0.1em;
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.onboarding-btn:hover {
+  box-shadow: 0 0 12px var(--color-green);
+  background: rgba(5, 255, 161, 0.05);
+}
+
+.onboarding-btn:active {
+  transform: translateY(1px);
+}
+
+.onboarding-escape {
+  text-align: center;
+  font-size: 0.75em;
+  margin-top: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .onboarding-typewriter {
+    animation: none;
+    opacity: 1;
+  }
+}
