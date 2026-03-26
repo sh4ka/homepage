@@ -99,12 +99,12 @@ register('r', () => {
 // Register number keys 1-9 and 0 for quick links
 for (let i = 1; i <= 9; i++) {
   register(String(i), (event) => {
-    const linkEvent = new CustomEvent('hackpage:open-link', { detail: { index: i - 1 } });
+    const linkEvent = new CustomEvent('tildepage:open-link', { detail: { index: i - 1 } });
     document.dispatchEvent(linkEvent);
   }, { description: `Open link ${i}` });
 }
 register('0', () => {
-  const linkEvent = new CustomEvent('hackpage:open-link', { detail: { index: 9 } });
+  const linkEvent = new CustomEvent('tildepage:open-link', { detail: { index: 9 } });
   document.dispatchEvent(linkEvent);
 }, { description: 'Open link 10' });
 
