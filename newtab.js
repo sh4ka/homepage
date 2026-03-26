@@ -108,6 +108,7 @@ async function init() {
   }
 
   document.getElementById('main').focus();
+  setTimeout(() => document.getElementById('main').focus(), 100);
 }
 
 document.addEventListener('DOMContentLoaded', init);
