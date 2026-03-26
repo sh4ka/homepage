@@ -1,6 +1,6 @@
 {
   "name": "hackpage",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Cyberpunk neon hacker command center for your new tab",
   "type": "module",
   "scripts": {
