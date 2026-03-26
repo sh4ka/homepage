@@ -1,5 +1,7 @@
 # ~/page
 
+![~/page](screenshot.png)
+
 A cyberpunk neon command center for your Firefox new tab.
 
 > ⚠️ **This project was written entirely by AI** (Claude via [OpenCode](https://opencode.ai)). The human author directed the design and features; all code was generated and iterated through AI assistance.

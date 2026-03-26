@@ -159,7 +159,6 @@ function buildStatLines(data) {
     { label: 'FEEDS',     value: data.feeds,     colorClass: 'text-green' },
     { label: 'SESSIONS',  value: data.sessions,  colorClass: 'text-green' },
     { label: 'STORAGE',   value: data.storage,   colorClass: 'text-green' },
-    { label: 'CPU/RAM',   value: 'ACCESS DENIED', colorClass: 'text-magenta' },
   ];
 }
 
