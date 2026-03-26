@@ -108,7 +108,10 @@ async function init() {
   }
 
   document.getElementById('main').focus();
-  setTimeout(() => document.getElementById('main').focus(), 100);
+  setTimeout(() => {
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) searchInput.focus();
+  }, 100);
 }
 
 document.addEventListener('DOMContentLoaded', init);
