@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <rect width="128" height="128" rx="16" fill="#0d0e14"/>
+  <text
+    x="64"
+    y="82"
+    font-family="'JetBrains Mono', 'Courier New', monospace"
+    font-weight="700"
+    font-size="52"
+    fill="#00f0ff"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    filter="url(#glow)"
+  >~/</text>
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
