@@ -106,6 +106,8 @@ async function init() {
       await checkFirstRun();
     } catch (e) { console.error('[~/page] onboarding error:', e); }
   }
+
+  document.getElementById('main').focus();
 }
 
 document.addEventListener('DOMContentLoaded', init);
